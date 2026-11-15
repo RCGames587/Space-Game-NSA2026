@@ -1,0 +1,401 @@
+﻿Follow the instructions below, Each level will add to the game mechanics, but the lowest of levels will have little mechanics, only what is included in it’s mission. Explain the significance of the missions engineering challenge before each level starts. Allow for the player to choose levels, unlocking completed/current levels. Create a button that unlocks all levels in the top right corner of the main menu.
+
+Add Level 1: Fuel System using the shared component database and validator.
+
+
+Mission:
+Select a propellant storage system capable of supporting orbital maneuvers
+and the return journey.
+
+
+Requirements:
+- Capacity at least 300 L.
+- Empty tank mass at most 25 lb.
+- Compatible with MMH + NTO.
+- Connects to the spacecraft propulsion system.
+
+
+Present F1, F2, F3, and F4 through the existing game's interaction style.
+Reuse current UI components where practical.
+
+
+Show:
+- Name, shape, empty mass, capacity, and cost.
+- Requirement checklist.
+- A readable explanation of each failed or unverified requirement.
+- Preview of the spacecraft's revised total cost before confirmation.
+
+
+Expected numerical results:
+- F1 fails capacity.
+- F2 fails capacity.
+- F3 passes capacity and mass.
+- F4 passes capacity but fails mass.
+
+
+F3 is the intended baseline solution and must also have explicit passing
+propellant/interface capability data.
+
+
+Do not mark F4 valid based on the earlier summary table's "Yes*" label.
+
+
+On successful confirmation:
+- Save F3, or any genuinely passing future option, as the selected fuel system.
+- Mark Level 1 complete.
+- Unlock Level 2 through the existing progression system.
+
+
+Allow later revisiting without resetting unrelated selections.
+Add tests for threshold boundaries and the four component outcomes.
+
+
+
+
+Add Level 2: Distance / Navigation without replacing existing level systems.
+
+
+Mission:
+Reach the ISS and perform autonomous rendezvous and docking.
+
+
+Requirements:
+- Navigation capability at least 400 km.
+- Accuracy error at most 10 m.
+- Autonomous docking support.
+- Flight-computer compatibility.
+
+
+Use N1 through N4 from the shared database.
+
+
+Explain accuracy clearly in the UI:
+"Smaller position error is better."
+
+
+Expected numerical results:
+- N1 fails capability and accuracy.
+- N2 fails capability and accuracy.
+- N3 passes both numerical requirements.
+- N4 passes both numerical requirements.
+
+
+N3 is the baseline solution.
+Do not reject N4 merely because the draft says "Valid: N3."
+N4 must pass if its autonomous docking and flight-computer compatibility
+are explicitly enabled. If those capabilities are unspecified, show
+"Needs verification" and explain what is missing.
+
+
+Support a more expensive component passing without being the cheapest option.
+
+
+Show each option's specifications, cost, and validation checklist.
+Save confirmed selections and unlock Level 3.
+
+
+Add tests proving:
+- Exactly 400 km passes.
+- Exactly 10 m error passes.
+- Higher capability does not compensate for inadequate accuracy.
+- Missing autonomous docking or interface data prevents confirmed success.
+
+
+
+
+Add Level 3: Structural Mass using the existing project architecture.
+
+
+Mission:
+Build a capsule that supports the required payload while staying within the
+structure-mass limit.
+
+
+Requirements:
+- Payload rating at least 6000 kg.
+- Structure mass at most 1200 kg.
+- Qualified for launch loads and orbital operations.
+- Supports pressure-vessel integration.
+
+
+Use M1 through M4 from the shared database.
+
+
+Expected numerical outcomes:
+- M1: fails structure mass.
+- M2: passes structure mass, fails payload rating.
+- M3: passes structure mass and payload rating.
+- M4: passes payload rating, fails structure mass.
+
+
+Use M4's canonical cost of $50M, not the conflicting $40M alternative-table value.
+
+
+M3 is the intended baseline solution and must have explicit passing
+qualification/interface flags.
+
+
+UI:
+- Display payload rating and structure mass as separate concepts.
+- Show exact failure amounts where useful.
+- Explain that higher payload capacity does not override a mass-limit failure.
+- Show selection cost and updated spacecraft total.
+
+
+Do not introduce a whole-spacecraft launch-mass limit that was not specified.
+If showing total installed mass, label it informational and convert units
+consistently.
+
+
+Save valid selections, unlock Level 4, and add boundary/component tests.
+
+
+Add Level 4: Electrical Power.
+
+
+Mission:
+Provide electrical power for spacecraft systems during the mission.
+
+
+Preserve the distinction between power output and stored energy.
+
+
+Baseline requirements:
+- At least 4 kW of required electrical supply.
+- Power-system mass at most 200 kg.
+- Electrical distribution compatibility.
+- Sufficient availability during the configured mission operating profile.
+
+
+Represent the original "minimum generation: 4 kW" requirement explicitly:
+- Under a strict generation requirement, a battery-only option does not pass.
+- Under a supply-based mission profile, a battery can be evaluated if its
+  usable stored energy and operating/recharge conditions are specified.
+
+
+Use P1 through P4:
+- P1 fails the 4 kW threshold.
+- P2 meets output and mass thresholds but is conditional on the mission profile.
+- P3 meets output and mass thresholds and is the intended baseline option.
+- P4 exceeds the mass limit.
+
+
+Do not silently invent a battery energy capacity or assume that 4 kW means
+sufficient energy for a 170-day mission.
+
+
+Add configurable mission-profile fields as needed:
+- Required supply power.
+- Required generation power, if applicable.
+- Required battery-supported duration.
+- Usable stored energy in kWh.
+- Allowed recharge or externally supplied power conditions.
+
+
+For a constant battery-only load, calculate:
+required_energy_kWh = required_power_kW × operating_duration_hours
+
+
+Keep unspecified inputs unverified rather than treating them as zero or passing.
+If adding nonconstant duty cycles, make their assumptions explicit.
+
+
+UI:
+- Distinguish kW from kWh.
+- Show why P2 is conditional.
+- Show the $11M potential saving from P3 to P2 without advertising it as valid
+  before the energy and mission checks pass.
+
+
+Save valid selections, unlock Level 5, and test generation-versus-supply rules,
+battery energy sufficiency, missing data, and mass limits.
+
+
+Add Level 5: Communications.
+
+
+Mission:
+Maintain communications with Mission Control and the ISS.
+
+
+Requirements:
+- Data rate at least 1 Mbps.
+- Communications-system mass at most 100 kg.
+- Required ground-station or relay coverage over the mission's configured
+  communications windows.
+- Mission telemetry support.
+- Spacecraft communications interface compatibility.
+
+
+Use C1 through C4.
+
+
+Expected numerical outcomes:
+- C1 fails data rate.
+- C2 meets data-rate and mass requirements.
+- C3 meets data-rate and mass requirements.
+- C4 fails mass.
+
+
+C3 is the intended baseline solution.
+C2 is valid only if its configured coverage, telemetry, and compatibility
+capabilities also satisfy the mission.
+
+
+Do not assume that meeting 1 Mbps proves adequate range or coverage.
+Do not invent antenna ranges or relay access.
+
+
+Add explicit, configurable coverage capability/requirement fields.
+Missing coverage evidence must produce a conditional/unverified result.
+
+
+UI:
+- Show C1's 64 kbps consistently as 0.064 Mbps when comparing requirements.
+- Explain C2's coverage condition.
+- Show the $8M potential saving from C3 to C2.
+- Identify exactly which checks prevent confirmation.
+
+
+Save valid selections, unlock Level 6, and test data-rate conversion,
+coverage requirements, missing capability data, and mass limits.
+
+
+
+
+Add Level 6: Mission Lifetime.
+
+
+Mission:
+Select a life-support system for four astronauts and the required mission duration.
+
+
+Game requirements:
+- Crew capacity at least 4.
+- Supported duration at least 170 days.
+- System mass at most 1200 kg.
+- Oxygen provision.
+- Carbon dioxide removal.
+- Temperature regulation.
+- Pressure control.
+- Compatibility with the spacecraft.
+
+
+Use L1 through L4.
+
+
+Expected numerical outcomes:
+- L1 fails crew capacity and duration.
+- L2 meets crew capacity and mass but fails duration.
+- L3 meets crew capacity, duration, and mass.
+- L4 meets crew capacity and duration but fails mass.
+
+
+L3 is the intended baseline solution and must have the required life-support
+functions explicitly configured.
+
+
+Treat these as simplified game life-support ratings. Do not present the
+component's duration as a verified claim about actual independent Crew Dragon
+life-support endurance.
+
+
+UI:
+- Show crew capacity, duration, mass, and cost.
+- Explain every failing requirement.
+- Distinguish mission duration from any future docked-support scenario.
+- Do not assume external station support unless the mission profile explicitly
+  includes it.
+
+
+Save a valid selection and unlock Level 7 once all six component categories
+have passing selections.
+
+
+Add tests for all four components, exact thresholds, and missing required functions.
+
+
+
+
+Add Level 7: Budget Optimization using all previously selected components.
+
+
+Mission:
+Reduce total spacecraft component cost while preserving the original mission
+requirements and compatibility constraints.
+
+
+Financial configuration:
+- Game construction budget: $200,000,000.
+- Baseline selection:
+  F3 = $5,000,000
+  N3 = $8,000,000
+  M3 = $25,000,000
+  P3 = $25,000,000
+  C3 = $12,000,000
+  L3 = $60,000,000
+- Baseline total: $135,000,000.
+- Baseline remaining budget: $65,000,000.
+
+
+The draft mentions a $2.6 billion program-contract reference.
+Do not use that figure as player funds or mix it with component construction
+costs. Omit it from core gameplay unless separately approved as contextual text.
+
+
+Level behavior:
+1. Display all six current selections.
+2. Display total cost, remaining budget, and savings relative to baseline.
+3. Let the player revisit any category.
+4. Preview the financial and engineering effects of substitutions.
+5. Revalidate the entire current configuration after each change.
+6. Prevent mission certification if any required component is missing,
+   failing, or unverified.
+7. Preserve original requirements during optimization.
+
+
+Handle alternatives accurately:
+- F4 is more expensive than F3 and fails the original fuel-mass limit.
+- N2 is cheaper but fails the original navigation requirements.
+- M4 costs $50M and fails the original structure-mass limit.
+- P2 saves $11M only when its energy and mission-profile conditions pass.
+- C2 saves $8M only when its coverage and interface conditions pass.
+- L2 is cheaper but fails the original 170-day duration requirement.
+
+
+Do not relax requirements automatically to create cheaper valid options.
+
+
+Since the $135M baseline already fits the $200M budget, distinguish:
+- Mission certification: all engineering checks pass and total cost <= $200M.
+- Optimization result: savings achieved relative to the $135M baseline.
+
+
+Compute the lowest-cost valid configuration from the current database and
+mission profile rather than hard-coding one winning combination.
+There are only 4096 combinations across the six categories, so exhaustive
+evaluation is acceptable if consistent with the project's architecture.
+
+
+If P2 and C2 are both fully valid, the expected lowest-cost combination is:
+F3 + N3 + M3 + P2 + C2 + L3
+Total: $116M
+Savings: $19M
+Remaining budget: $84M
+
+
+If conditional alternatives are unverified or fail, exclude them from certified
+solutions and explain why. Do not make the level impossible to complete if the
+baseline is the cheapest verified configuration.
+
+
+Show separate feedback for:
+- Certified configuration.
+- Cost savings.
+- Lowest-cost verified solution.
+- Conditional opportunities requiring additional mission data.
+
+
+Add tests for totals, substitution savings, invalid cheaper selections,
+budget boundaries, compatibility failures, and optimization results under
+different P2/C2 eligibility settings.

@@ -1,0 +1,78 @@
+--- original/starliner_engineering.py
++++ updated/starliner_engineering.py
+@@ -1,6 +1,8 @@
+ """Starliner -- Florida engineering campaign and sandbox (Python 3.9+).
+ 
+ Run: python starliner_engineering.py
++Engineering campaign uses starliner_campaign*.py and starliner_engineering_data.py.
++Original flight game remains available through the sandbox and --legacy-game.
+ Tests (no Pygame needed): python starliner_engineering.py --self-test
+ Balance report: python starliner_engineering.py --balance-report
+ 
+@@ -1257,18 +1259,47 @@
+ 
+ def main():
+     parser=argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--self-test',action='store_true',help='Run model/persistence tests without Pygame')
+-    parser.add_argument('--balance-report',action='store_true',help='List all valid budget builds')
+-    parser.add_argument('--save-file',type=Path,default=SAVE_PATH)
++    parser.add_argument('--self-test',action='store_true',help='Run arcade regression and engineering campaign tests without Pygame')
++    parser.add_argument('--balance-report',action='store_true',help='Report engineering mission feasibility and optimization')
++    parser.add_argument('--engineering-report',action='store_true',help='Alias for --balance-report')
++    parser.add_argument('--arcade-balance-report',action='store_true',help='Report preserved legacy arcade mission balance')
++    parser.add_argument('--save-file',type=Path,default=SAVE_PATH,help='Legacy arcade save; not the engineering campaign save')
++    parser.add_argument('--campaign-save-file',type=Path,default=Path.home()/'.starliner'/'engineering_campaign_v2.json')
++    parser.add_argument('--profile',type=Path,help='Explicit engineering mission/capability JSON profile')
++    parser.add_argument('--legacy-game',action='store_true',help='Open the unmodified legacy arcade UI')
+     args=parser.parse_args()
+     if args.self_test:
+-        return 0 if run_tests() else 1
+-    if args.balance_report:
++        import unittest
++        old_ok=run_tests()
++        suite=unittest.defaultTestLoader.discover(str(Path(__file__).parent),pattern='test_starliner_campaign.py')
++        new_ok=unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful()
++        return 0 if old_ok and new_ok else 1
++    if args.arcade_balance_report:
+         builds=feasible_builds()
+         for config in builds:
+             v=metrics(config)
+             print(' / '.join(config[c] for c in CATEGORIES),f"${v['cost_m']}M",ascent_forecast(v['dry'],v['fuel']))
+-        print(f'{len(builds)} qualifying builds; cap ${MISSION["budget_m"]}M; minimum cost NOT required.')
++        print(f'{len(builds)} qualifying arcade builds; cap ${MISSION["budget_m"]}M.')
++        return 0
++    from starliner_engineering_data import load_profile, balance_report, DISCLAIMER
++    try:
++        mission,catalog=load_profile(args.profile)
++    except (OSError,ValueError,TypeError,KeyError) as exc:
++        parser.error('Invalid engineering profile: '+str(exc))
++    if args.balance_report or args.engineering_report:
++        from starliner_engineering_data import validate_component, CATEGORIES as engineering_categories
++        print(DISCLAIMER)
++        report=balance_report(mission,catalog)
++        for cid,part in catalog.items():
++            result=validate_component(part,mission)
++            print(cid,part.name,result.status)
++            for check in result.checks:
++                if check.status!='passing': print('  '+check.message)
++        for cost,config in report['solutions']:
++            print(' / '.join(config[c] for c in engineering_categories),f'${cost:,}')
++        print('Verified solutions:',len(report['solutions']))
++        print('Minimum verified cost:',report['minimum_cost_dollars'])
++        print('Budget:',mission.budget_dollars)
+         return 0
+     global pygame
+     try:
+@@ -1277,7 +1308,11 @@
+         print('Pygame is required for the window. Install: python -m pip install pygame',file=sys.stderr)
+         return 1
+     pygame=pg
+-    Game(args.save_file).run()
++    if args.legacy_game:
++        Game(args.save_file).run()
++    else:
++        from starliner_campaign_ui import make_game_class
++        make_game_class(Game,pg)(args.save_file,mission,catalog,args.campaign_save_file).run()
+     return 0
+ 
+ 

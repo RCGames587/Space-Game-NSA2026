@@ -1,0 +1,301 @@
+=== tests ===
+Exit code: 0
+test_all_dragon_over_budget (__main__.run_tests.<locals>.ModelTests.test_all_dragon_over_budget) ... ok
+test_bad_categories (__main__.run_tests.<locals>.ModelTests.test_bad_categories) ... ok
+test_budget_boundary (__main__.run_tests.<locals>.ModelTests.test_budget_boundary) ... ok
+test_campaign_apply_cancel_and_unlock (__main__.run_tests.<locals>.ModelTests.test_campaign_apply_cancel_and_unlock) ... ok
+test_catalog (__main__.run_tests.<locals>.ModelTests.test_catalog) ... ok
+test_corrupt_and_unknown_save_untouched (__main__.run_tests.<locals>.ModelTests.test_corrupt_and_unknown_save_untouched) ... ok
+test_exactly_two_budget_solutions (__main__.run_tests.<locals>.ModelTests.test_exactly_two_budget_solutions) ... ok
+test_forecast_physics (__main__.run_tests.<locals>.ModelTests.test_forecast_physics) ... ok
+test_good (__main__.run_tests.<locals>.ModelTests.test_good) ... ok
+test_guidance_changes_flight (__main__.run_tests.<locals>.ModelTests.test_guidance_changes_flight) ... ok
+test_healthy_power_through_ascent (__main__.run_tests.<locals>.ModelTests.test_healthy_power_through_ascent) ... ok
+test_names_prices (__main__.run_tests.<locals>.ModelTests.test_names_prices) ... ok
+test_pause_and_modal_freeze_resources (__main__.run_tests.<locals>.ModelTests.test_pause_and_modal_freeze_resources) ... ok
+test_reentry_math_can_recover (__main__.run_tests.<locals>.ModelTests.test_reentry_math_can_recover) ... ok
+test_requirement_failures (__main__.run_tests.<locals>.ModelTests.test_requirement_failures) ... ok
+test_resource_accounting (__main__.run_tests.<locals>.ModelTests.test_resource_accounting) ... ok
+test_revalidation_and_no_mutation (__main__.run_tests.<locals>.ModelTests.test_revalidation_and_no_mutation) ... ok
+test_roundtrip_navigation_fuel (__main__.run_tests.<locals>.ModelTests.test_roundtrip_navigation_fuel) ... ok
+test_runtime_resource_failure (__main__.run_tests.<locals>.ModelTests.test_runtime_resource_failure) ... ok
+test_sandbox_never_saves_campaign (__main__.run_tests.<locals>.ModelTests.test_sandbox_never_saves_campaign) ... ok
+test_save_roundtrip (__main__.run_tests.<locals>.ModelTests.test_save_roundtrip) ... ok
+test_sequential_campaign_is_solvable (__main__.run_tests.<locals>.ModelTests.test_sequential_campaign_is_solvable) ... ok
+test_unknown_schema_and_missing (__main__.run_tests.<locals>.ModelTests.test_unknown_schema_and_missing) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.735s
+
+OK
+test_budget_immediately_revalidates (test_starliner_campaign.CampaignTests.test_budget_immediately_revalidates) ... ok
+test_corrupt_and_unknown_save_untouched (test_starliner_campaign.CampaignTests.test_corrupt_and_unknown_save_untouched) ... ok
+test_docking_alignment_gate (test_starliner_campaign.CampaignTests.test_docking_alignment_gate) ... ok
+test_failed_save_preserves_previous (test_starliner_campaign.CampaignTests.test_failed_save_preserves_previous) ... ok
+test_full_sequential_playthrough (test_starliner_campaign.CampaignTests.test_full_sequential_playthrough) ... ok
+test_invalid_selection_does_not_commit (test_starliner_campaign.CampaignTests.test_invalid_selection_does_not_commit) ... ok
+test_legacy_migration_no_trusted_progress (test_starliner_campaign.CampaignTests.test_legacy_migration_no_trusted_progress) ... ok
+test_level_one_no_later_mechanics (test_starliner_campaign.CampaignTests.test_level_one_no_later_mechanics) ... ok
+test_locked_commit_blocked (test_starliner_campaign.CampaignTests.test_locked_commit_blocked) ... ok
+test_no_mutation_from_trial_preview (test_starliner_campaign.CampaignTests.test_no_mutation_from_trial_preview) ... ok
+test_profile_change_requires_retesting (test_starliner_campaign.CampaignTests.test_profile_change_requires_retesting) ... ok
+test_revalidate_saved_flags (test_starliner_campaign.CampaignTests.test_revalidate_saved_flags) ... ok
+test_revisit_retains_other_selections (test_starliner_campaign.CampaignTests.test_revisit_retains_other_selections) ... ok
+test_save_roundtrip (test_starliner_campaign.CampaignTests.test_save_roundtrip) ... ok
+test_unlock_all_not_certification (test_starliner_campaign.CampaignTests.test_unlock_all_not_certification) ... ok
+test_all_supplied_numeric_values (test_starliner_campaign.DataTests.test_all_supplied_numeric_values) ... ok
+test_baseline_and_alternative_optimization (test_starliner_campaign.DataTests.test_baseline_and_alternative_optimization) ... ok
+test_baseline_assumptions (test_starliner_campaign.DataTests.test_baseline_assumptions) ... ok
+test_battery_cannot_generate (test_starliner_campaign.DataTests.test_battery_cannot_generate) ... ok
+test_battery_energy_and_remaining_mission (test_starliner_campaign.DataTests.test_battery_energy_and_remaining_mission) ... ok
+test_battery_missing_inputs (test_starliner_campaign.DataTests.test_battery_missing_inputs) ... ok
+test_boolean_and_immutable_data (test_starliner_campaign.DataTests.test_boolean_and_immutable_data) ... ok
+test_budget_totals_and_boundaries (test_starliner_campaign.DataTests.test_budget_totals_and_boundaries) ... ok
+test_catalog_completeness (test_starliner_campaign.DataTests.test_catalog_completeness) ... ok
+test_communications_coverage_and_units (test_starliner_campaign.DataTests.test_communications_coverage_and_units) ... ok
+test_each_conditional_opportunity (test_starliner_campaign.DataTests.test_each_conditional_opportunity) ... ok
+test_exact_prices (test_starliner_campaign.DataTests.test_exact_prices) ... ok
+test_fuel_expected (test_starliner_campaign.DataTests.test_fuel_expected) ... ok
+test_invalid_cheaper_alternatives (test_starliner_campaign.DataTests.test_invalid_cheaper_alternatives) ... ok
+test_lifetime_boundaries_and_all_options (test_starliner_campaign.DataTests.test_lifetime_boundaries_and_all_options) ... ok
+test_missing_and_invalid_numeric (test_starliner_campaign.DataTests.test_missing_and_invalid_numeric) ... ok
+test_missing_docking_or_interface (test_starliner_campaign.DataTests.test_missing_docking_or_interface) ... ok
+test_n4_verified_can_pass (test_starliner_campaign.DataTests.test_n4_verified_can_pass) ... ok
+test_names_shapes_materials (test_starliner_campaign.DataTests.test_names_shapes_materials) ... ok
+test_navigation_exact_thresholds (test_starliner_campaign.DataTests.test_navigation_exact_thresholds) ... ok
+test_power_numerical_failures (test_starliner_campaign.DataTests.test_power_numerical_failures) ... ok
+test_profile_validation (test_starliner_campaign.DataTests.test_profile_validation) ... ok
+test_structure_expected_and_boundary (test_starliner_campaign.DataTests.test_structure_expected_and_boundary) ... ok
+test_unknown_and_partial_config (test_starliner_campaign.DataTests.test_unknown_and_partial_config) ... ok
+test_unknown_is_not_passing (test_starliner_campaign.DataTests.test_unknown_is_not_passing) ... ok
+test_all_exercise_stages_draw_and_controls (test_starliner_campaign.UITests.test_all_exercise_stages_draw_and_controls) ... ok
+test_back_and_scroll_events (test_starliner_campaign.UITests.test_back_and_scroll_events) ... ok
+test_budget_unknown_blocked_and_certification (test_starliner_campaign.UITests.test_budget_unknown_blocked_and_certification) ... ok
+test_design_cancel_no_mutation (test_starliner_campaign.UITests.test_design_cancel_no_mutation) ... ok
+test_every_level_has_briefing (test_starliner_campaign.UITests.test_every_level_has_briefing) ... ok
+test_invalid_confirm_stays_design (test_starliner_campaign.UITests.test_invalid_confirm_stays_design) ... ok
+test_level_one_complete_and_save (test_starliner_campaign.UITests.test_level_one_complete_and_save) ... ok
+test_menu_unlock_top_right_and_persistence (test_starliner_campaign.UITests.test_menu_unlock_top_right_and_persistence) ... ok
+test_unlock_corrupt_save_never_overwrites (test_starliner_campaign.UITests.test_unlock_corrupt_save_never_overwrites) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.028s
+
+OK
+
+
+=== engineering_balance ===
+Exit code: 0
+Component prices and engineering specifications are simplified game values, not actual SpaceX procurement costs or engineering drawings.
+F1 Compact Tank failing
+  Capacity (L): 180; needs >= 300 (fails by 120)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+F2 Lightweight Tank failing
+  Capacity (L): 250; needs >= 300 (fails by 50)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+F3 Dragon Tank System passing
+F4 Oversized Tank failing
+  Empty mass (lb): 35; needs <= 25 (fails by 10)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+N1 Basic GPS failing
+  Navigation capability (km): 100; needs >= 400 (fails by 300)
+  Position error (m): 500; needs <= 10 (fails by 490)
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+N2 Radar Navigation failing
+  Navigation capability (km): 250; needs >= 400 (fails by 150)
+  Position error (m): 100; needs <= 10 (fails by 90)
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+N3 Dragon Navigation Suite passing
+N4 Advanced Navigation unverified
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+M1 Steel Frame failing
+  Structure mass (kg): 2400; needs <= 1200 (fails by 1200)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+M2 Aluminum Frame failing
+  Payload rating (kg): 4000; needs >= 6000 (fails by 2000)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+M3 Dragon Lightweight Structure passing
+M4 Titanium Frame failing
+  Structure mass (kg): 1500; needs <= 1200 (fails by 300)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+P1 Compact Solar Array failing
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+  Supply (kW): 2; needs >= 4 (fails by 2)
+  Generation (kW): 2; needs >= 4 (fails by 2)
+P2 Battery Pack failing
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+  Generation (kW): 0; needs >= 4 (fails by 4)
+  Battery-supported duration: needs verification.
+P3 Dragon Solar Array passing
+P4 Oversized Solar Array failing
+  System mass (kg): 500; needs <= 200 (fails by 300)
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+C1 Basic Radio failing
+  Data rate (Mbps): 0.064; needs >= 1 (fails by 0.936)
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+C2 Short-Range Antenna unverified
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+C3 Dragon Communications Suite passing
+C4 Advanced Communications failing
+  System mass (kg): 150; needs <= 100 (fails by 50)
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+L1 Basic Life Support failing
+  Crew capacity: 2; needs >= 4 (fails by 2)
+  Duration (days): 30; needs >= 170 (fails by 140)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+L2 Extended Life Support failing
+  Duration (days): 120; needs >= 170 (fails by 50)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+L3 Dragon Life Support passing
+L4 Long-Duration System failing
+  System mass (kg): 1800; needs <= 1200 (fails by 600)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+F3 / N3 / M3 / P3 / C3 / L3 $135,000,000
+Verified solutions: 1
+Minimum verified cost: 135000000
+Budget: 200000000
+
+
+=== arcade_balance ===
+Exit code: 0
+F3 / N3 / M3 / P2 / C2 / L3 $116M (True, 79.01600000000144, 46.07999999999937)
+F4 / N3 / M3 / P2 / C2 / L3 $119M (True, 105.2560000000015, 67.27999999999892)
+2 qualifying arcade builds; cap $119M.
+
+
+=== example_profile ===
+Exit code: 0
+Component prices and engineering specifications are simplified game values, not actual SpaceX procurement costs or engineering drawings.
+F1 Compact Tank failing
+  Capacity (L): 180; needs >= 300 (fails by 120)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+F2 Lightweight Tank failing
+  Capacity (L): 250; needs >= 300 (fails by 50)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+F3 Dragon Tank System passing
+F4 Oversized Tank failing
+  Empty mass (lb): 35; needs <= 25 (fails by 10)
+  mmh nto compatible: needs verification
+  propulsion connection: needs verification
+N1 Basic GPS failing
+  Navigation capability (km): 100; needs >= 400 (fails by 300)
+  Position error (m): 500; needs <= 10 (fails by 490)
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+N2 Radar Navigation failing
+  Navigation capability (km): 250; needs >= 400 (fails by 150)
+  Position error (m): 100; needs <= 10 (fails by 90)
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+N3 Dragon Navigation Suite passing
+N4 Advanced Navigation unverified
+  autonomous docking: needs verification
+  flight computer interface: needs verification
+M1 Steel Frame failing
+  Structure mass (kg): 2400; needs <= 1200 (fails by 1200)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+M2 Aluminum Frame failing
+  Payload rating (kg): 4000; needs >= 6000 (fails by 2000)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+M3 Dragon Lightweight Structure passing
+M4 Titanium Frame failing
+  Structure mass (kg): 1500; needs <= 1200 (fails by 300)
+  launch load qualified: needs verification
+  orbital operations: needs verification
+  pressure vessel interface: needs verification
+P1 Compact Solar Array failing
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+  Supply (kW): 2; needs >= 4 (fails by 2)
+  Generation (kW): 2; needs >= 4 (fails by 2)
+P2 Battery Pack failing
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+  Generation (kW): 0; needs >= 4 (fails by 4)
+  Battery-supported duration: needs verification.
+P3 Dragon Solar Array passing
+P4 Oversized Solar Array failing
+  System mass (kg): 500; needs <= 200 (fails by 300)
+  electrical distribution interface: needs verification
+  mission power energy available: needs verification
+C1 Basic Radio failing
+  Data rate (Mbps): 0.064; needs >= 1 (fails by 0.936)
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+C2 Short-Range Antenna unverified
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+C3 Dragon Communications Suite passing
+C4 Advanced Communications failing
+  System mass (kg): 150; needs <= 100 (fails by 50)
+  Ground or relay coverage throughout required mission windows: needs verification
+  telemetry support: needs verification
+  spacecraft interface: needs verification
+L1 Basic Life Support failing
+  Crew capacity: 2; needs >= 4 (fails by 2)
+  Duration (days): 30; needs >= 170 (fails by 140)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+L2 Extended Life Support failing
+  Duration (days): 120; needs >= 170 (fails by 50)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+L3 Dragon Life Support passing
+L4 Long-Duration System failing
+  System mass (kg): 1800; needs <= 1200 (fails by 600)
+  oxygen: needs verification
+  co2 removal: needs verification
+  temperature regulation: needs verification
+  pressure control: needs verification
+  spacecraft interface: needs verification
+F3 / N3 / M3 / P3 / C3 / L3 $135,000,000
+Verified solutions: 1
+Minimum verified cost: 135000000
+Budget: 200000000

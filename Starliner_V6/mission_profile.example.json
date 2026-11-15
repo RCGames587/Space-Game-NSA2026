@@ -1,0 +1,29 @@
+{
+  "mission": {
+    "budget_dollars": 200000000,
+    "required_power_kw": 4,
+    "require_generation": true,
+    "required_generation_kw": 4,
+    "battery_duration_hours": null,
+    "external_support_allowed": false,
+    "recharge_allowed": false,
+    "coverage_description": "Ground or relay coverage throughout required mission windows"
+  },
+  "components": {
+    "P2": {
+      "capabilities": {
+        "electrical_distribution_interface": null,
+        "mission_power_energy_available": null
+      },
+      "assumption": "Unverified template: supply usable_energy_kwh, supported duration and evidence before enabling."
+    },
+    "C2": {
+      "capabilities": {
+        "required_coverage": null,
+        "telemetry_support": null,
+        "spacecraft_interface": null
+      },
+      "assumption": "Unverified template: coverage and interfaces must be established, not inferred from data rate."
+    }
+  }
+}

@@ -102,13 +102,32 @@ class Rocket:
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((W, H))
-        pygame.display.set_caption('NSA2026 Mission Planner')
+
+        # Actual window size: 468 × 650
+        self.scale = 0.65
+        self.window_size = (
+            round(W * self.scale),
+            round(H * self.scale)
+        )
+
+        self.window = pygame.display.set_mode(self.window_size)
+
+        # Internal drawing surface: still 720 × 1000.
+        # This must exist before any drawing methods are called.
+        self.screen = pygame.Surface((W, H))
+
+        pygame.display.set_caption(
+            'Starliner - Portrait Mission Planner'
+        )
+
         self.clock = pygame.time.Clock()
+
         self.font = pygame.font.Font(None, 26)
         self.small = pygame.font.Font(None, 22)
         self.big = pygame.font.Font(None, 48)
+
         self.background = MenuBackground((W, H))
+
         self.running = True
         self.buttons = []
         self.state = 'MAIN_MENU'
@@ -137,7 +156,7 @@ class Game:
 
     def button(self, title, rect, callback):
         rect = pygame.Rect(rect)
-        color = (55, 90, 120) if rect.collidepoint(pygame.mouse.get_pos()) else (30, 50, 76)
+        color = (55, 90, 120) if rect.collidepoint(self.mouse_position()) else (30, 50, 76)
         pygame.draw.rect(self.screen, color, rect, border_radius=7)
         pygame.draw.rect(self.screen, CYAN, rect, 1, border_radius=7)
         label = self.font.render(title, True, WHITE)
@@ -386,6 +405,25 @@ class Game:
         self.text(f'Fuel {self.rocket.fuel:.1f}/{self.rocket.capacity} | Mass {self.rocket.mass:.1f}', 25, 85)
         self.text('Booster: ' + ('attached' if self.rocket.booster else 'released'), 25, 112, GOLD, 'small')
 
+    def present(self):
+        """Scale the completed game image onto the actual window."""
+        pygame.transform.smoothscale(
+            self.screen,
+            self.window_size,
+            self.window
+        )
+        pygame.display.flip()
+
+
+    def mouse_position(self, position=None):
+        """Convert window coordinates into the game's original coordinates."""
+        if position is None:
+            position = pygame.mouse.get_pos()
+
+        return (
+            position[0] * W / self.window_size[0],
+            position[1] * H / self.window_size[1]
+        )
     def draw(self):
         self.buttons = []
         self.screen.fill((8, 13, 27))
@@ -396,7 +434,7 @@ class Game:
             self.button('Play', (200, 510, 320, 62), self.new_game)
             self.button('Quit', (200, 595, 320, 62), self.quit)
             self.text('Arcade mission prototype', 255, 920, size='small')
-            pygame.display.flip()
+            self.present()
             return
         self.text('STARLINER / ' + self.state, 25, 25, CYAN, 'big')
         if self.state == 'BRIEFING':
@@ -447,7 +485,7 @@ class Game:
             self.button('Main menu', (180, 595, 360, 60), self.main_menu)
         if self.modal:
             self.draw_design()
-        pygame.display.flip()
+        self.present()
 
     def quit(self):
         self.running = False
@@ -457,6 +495,12 @@ class Game:
         self.state = 'MAIN_MENU'
 
     def handle(self, event):
+        if event.type in (
+        pygame.MOUSEBUTTONDOWN,
+        pygame.MOUSEBUTTONUP,
+        pygame.MOUSEMOTION):
+            event.pos = self.mouse_position(event.pos)
+
         if event.type == pygame.QUIT:
             self.quit()
         elif event.type == pygame.KEYDOWN:
